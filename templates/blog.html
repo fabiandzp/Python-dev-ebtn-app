@@ -1,43 +1,25 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-    <title>Blog</title>
-	<script>
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
     window.onload = function() {
         setTimeout(function() {
-            document.getElementById('post-wrapper').style.display = 'block';
-        }, 0000);
+            document.getElementById('posts').style.display = 'block';
+        }, 3000);
     };
 
     </script>
-  </head>
-  <body>
-    <div class="container">
-	  <div class="jumbotron mt-3">
-		<h1>This is the blog page</h1>
-		<a href="{{ url_for('homepage') }}" class="btn btn-lg btn-primary" role="button" id="home-link">Go to home</a>
-		<a href="{{ url_for('add_post') }}" class="btn btn-lg btn-primary" role="button" id="add-post-link">Create post</a>
-		<div class="row" style="display: none; padding: 20px;" id="post-wrapper">
-			<ol id="posts" style="marging: 20px;" class="lead">
-				{% for post in posts %}
-				<li class="post"><a href="{{ url_for('see_post', title=post['title']) }}" class="post-link">{{ post['title'] }}</a></li>
-				{% endfor %}
-			</ol>
-		</div>
-	  </div>
-	</div>
+</head>
+<body>
+    <h1>This is the blog page</h1>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  </body>
+    <a href="{{ url_for('homepage') }}" class="data-nav-link" id="home-link">Go to home</a>
+    <a href="{{ url_for('add_post') }}" class="data-nav-link" id="add-post-link">Create post</a>
+
+    <ol id="posts" style="display: none">
+        {% for post in posts %}
+        <li class="post"><a href="{{ url_for('see_post', title=post['title']) }}" class="post-link">{{ post['title'] }}</a></li>
+        {% endfor %}
+    </ol>
+</body>
 </html>

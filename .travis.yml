@@ -1,0 +1,31 @@
+language: python
+python:
+  - "3.6"
+
+install:
+  - "pip install -r requirements.txt"
+
+script: skip
+
+jobs:
+  include:
+    - stage: deploy to DEV
+      script: skip
+      deploy: &heroku
+        provider: heroku
+        app: dev-ebtn-app-hk
+        api_key: 
+          secure: $hk_api_key # HEROKU API KEY
+        on:
+          repo: fabiandzp/dev-ebtn-app
+      after_deploy: 'curl https://dev-ebtn-app-hk.herokuapp.com/'
+
+    - stage: deploy to QA
+      script: skip
+      deploy:
+        <<: *heroku
+        app: qa-ebtn-app-hk
+      after_deploy: 'curl https://qa-ebtn-app-hk.herokuapp.com/'
+
+    - stage: UI Acceptance Test
+      script: bash ui_tests.sh # TRIGGE TRAVIS UI FWK REPOSITORY

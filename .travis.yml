@@ -28,4 +28,4 @@ jobs:
       after_deploy: 'curl https://qa-ebtn-app-hk.herokuapp.com/'
 
     - stage: UI Acceptance Test
-      script: bash ui_tests.sh # TRIGGE TRAVIS UI FWK REPOSITORY
+      script: bash ui_test.sh # TRIGGE TRAVIS UI FWK REPOSITORY
